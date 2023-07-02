@@ -35,7 +35,7 @@ class _CreateExerciseSessionPageState extends State<CreateExerciseSessionPage> {
   Future<void> _saveExerciseSession() async {
     if (_selectedExercise == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Please select an exercise.")),
+        const SnackBar(content: Text("Please select an exercise.")),
       );
       return;
     }
@@ -55,21 +55,21 @@ class _CreateExerciseSessionPageState extends State<CreateExerciseSessionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Exercise Session'),
+        title: const Text('Add Exercise Session'),
         backgroundColor: Colors.deepPurple,
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Select an exercise:',
               style: TextStyle(fontSize: 18),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
@@ -92,8 +92,8 @@ class _CreateExerciseSessionPageState extends State<CreateExerciseSessionPage> {
                 },
                 isExpanded: true,
                 dropdownColor: Colors.deepPurple.shade50,
-                underline: SizedBox.shrink(),
-                icon: Icon(
+                underline: const SizedBox.shrink(),
+                icon: const Icon(
                   Icons.arrow_drop_down,
                   color: Colors.deepPurple,
                 ),
@@ -105,7 +105,7 @@ class _CreateExerciseSessionPageState extends State<CreateExerciseSessionPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _saveExerciseSession,
-        child: Icon(Icons.check),
+        child: const Icon(Icons.check),
         backgroundColor: Colors.deepPurple,
       ),
     );

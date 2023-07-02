@@ -43,12 +43,11 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
   // Exercise search
   List<Exercise> _filteredExercises = [];
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
 
   // Session search
   List<Session> _filteredSessions = [];
   final TextEditingController _searchControllerSessions = TextEditingController();
-
 
   @override
   void initState() {
@@ -57,7 +56,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     _fetchExercisesFromDatabase();
     _fetchSessionsFromDatabase();
   }
-
 
   @override
   void dispose() {
@@ -70,17 +68,17 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Gym Tracker"),
+        title: const Text("Gym Tracker"),
         backgroundColor: Colors.deepPurple,
         actions: [
           IconButton(
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
             onPressed: _purgeDatabase,
           ),
         ],
         bottom: TabBar(
           controller: _tabController,
-          tabs: [
+          tabs: const [
             Tab(text: "Exercises"),
             Tab(text: "Sessions"),
           ],
@@ -119,8 +117,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             _navigateToCreateSession(context);
           }
         },
-        child: Icon(Icons.add),
         backgroundColor: Colors.deepPurple,
+        child: const Icon(Icons.add),
       ),
 
     );
@@ -135,10 +133,10 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           onTap: () => _navigateToExerciseDetails(context, exercise),
           child: Card(
             elevation: 4.0,
-            margin: EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
             child: Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
                 gradient: LinearGradient(
@@ -164,15 +162,15 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                     ),
                   )
                       : const Icon(Icons.image_not_supported, size: 80, color: Colors.white),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: Text(
                       "${exercise.name} - ${exercise.lastWeight ?? "N/A"} kg",
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.delete, color: Colors.white),
+                    icon: const Icon(Icons.delete, color: Colors.white),
                     onPressed: () => _showExerciseDeleteConfirmationDialog(context, exercise),
                   ),
                 ],
@@ -205,7 +203,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             borderRadius: BorderRadius.circular(30.0),
             borderSide: BorderSide(color: Colors.deepPurple.shade300, width: 2.0),
           ),
-          prefixIcon: Icon(Icons.search, color: Colors.deepPurple),
+          prefixIcon: const Icon(Icons.search, color: Colors.deepPurple),
           floatingLabelBehavior: FloatingLabelBehavior.never,
         ),
         onChanged: (value) => _filterExercises(value),
@@ -252,10 +250,10 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           onTap: () => _navigateToSessionDetails(context, session),
           child: Card(
             elevation: 4.0,
-            margin: EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
             child: Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
                 gradient: LinearGradient(
@@ -272,14 +270,14 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                 children: [
                   Text(
                     session.date,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.delete, color: Colors.white),
+                    icon: const Icon(Icons.delete, color: Colors.white),
                     onPressed: () => _showSessionDeleteConfirmationDialog(context, session),
                   ),
                 ],
@@ -293,7 +291,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
 
   Widget _buildSearchBarSessions() {
     return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: TextField(
         controller: _searchControllerSessions,
         decoration: InputDecoration(
@@ -313,7 +311,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             borderRadius: BorderRadius.circular(25.0),
             borderSide: BorderSide(color: Colors.deepPurple.shade300, width: 2.0),
           ),
-          prefixIcon: Icon(Icons.search, color: Colors.deepPurple),
+          prefixIcon: const Icon(Icons.search, color: Colors.deepPurple),
           floatingLabelBehavior: FloatingLabelBehavior.never,
         ),
         onChanged: (value) {
@@ -384,7 +382,6 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     }
   }
 
-
   void _navigateToCreateExercise(BuildContext context) async {
     final newExercise = await Navigator.push<Exercise>(
       context,
@@ -414,7 +411,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     final newSession = await Navigator.push<Session>(
       context,
       MaterialPageRoute(
-        builder: (context) => CreateSessionPage(),
+        builder: (context) => const CreateSessionPage(),
       ),
     );
 
@@ -460,17 +457,17 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Purge Database"),
-          content: Text("Are you sure you want to purge the database?"),
+          title: const Text("Purge Database"),
+          content: const Text("Are you sure you want to purge the database?"),
           actions: <Widget>[
             TextButton(
-              child: Text("Cancel"),
+              child: const Text("Cancel"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text("Purge"),
+              child: const Text("Purge"),
               onPressed: () async {
                 // Perform database purge operations here.
                 await DatabaseHelper.instance.purgeDatabase();

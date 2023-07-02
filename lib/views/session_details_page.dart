@@ -36,17 +36,17 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Session Details'),
+        title: const Text('Session Details'),
         backgroundColor: Colors.deepPurple,
       ),
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Session Date:',
                   style: TextStyle(
                     fontSize: 20,
@@ -56,7 +56,7 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                 ),
                 Text(
                   widget.session.date,
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -68,7 +68,7 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _navigateToCreateExerciseSession(context),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         backgroundColor: Colors.deepPurple,
       ),
     );
@@ -84,10 +84,10 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
           onTap: () => _navigateToExerciseSessionDetails(context, exerciseSession),
           child: Card(
             elevation: 4.0,
-            margin: EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
             child: Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
                 gradient: LinearGradient(
@@ -104,7 +104,7 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                 children: [
                   Text(
                     '#${index + 1} - ${exerciseSession.exerciseName}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
@@ -113,10 +113,10 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
                   Row(
                     children: [
                       IconButton(
-                        icon: Icon(Icons.delete, color: Colors.white),
+                        icon: const Icon(Icons.delete, color: Colors.white),
                         onPressed: () => _showDeleteExerciseSessionDialog(context, exerciseSession),
                       ),
-                      Icon(Icons.arrow_forward_ios, color: Colors.white),
+                      const Icon(Icons.arrow_forward_ios, color: Colors.white),
                     ],
                   ),
                 ],
@@ -134,17 +134,17 @@ class _SessionDetailsPageState extends State<SessionDetailsPage> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Delete Exercise Session'),
-          content: Text('Are you sure you want to delete this exercise session?'),
+          title: const Text('Delete Exercise Session'),
+          content: const Text('Are you sure you want to delete this exercise session?'),
           actions: <Widget>[
             TextButton(
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text('Delete'),
+              child: const Text('Delete'),
               onPressed: () async {
                 await DatabaseHelper.instance.deleteExerciseSession(exerciseSession.id!);
                 _fetchExerciseSessionsFromDatabase();

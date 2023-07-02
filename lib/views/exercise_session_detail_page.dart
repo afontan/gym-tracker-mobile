@@ -39,7 +39,7 @@ class _ExerciseSessionDetailsPageState extends State<ExerciseSessionDetailsPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Exercise Session Details'),
+        title: const Text('Exercise Session Details'),
         backgroundColor: Colors.deepPurple,
       ),
       body: RefreshIndicator(
@@ -47,11 +47,11 @@ class _ExerciseSessionDetailsPageState extends State<ExerciseSessionDetailsPage>
         child: ListView(
           children: [
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Session Date:',
                     style: TextStyle(
                       fontSize: 20,
@@ -59,13 +59,13 @@ class _ExerciseSessionDetailsPageState extends State<ExerciseSessionDetailsPage>
                       color: Colors.blueGrey,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text(
                     _session?.date ?? 'Loading...',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 24),
-                  Text(
+                  const SizedBox(height: 24),
+                  const Text(
                     'Exercise Name:',
                     style: TextStyle(
                       fontSize: 20,
@@ -73,12 +73,12 @@ class _ExerciseSessionDetailsPageState extends State<ExerciseSessionDetailsPage>
                       color: Colors.blueGrey,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text(
                     widget.exerciseSession.exerciseName ?? 'Unknown Exercise',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                 ],
               ),
             ),
@@ -88,7 +88,7 @@ class _ExerciseSessionDetailsPageState extends State<ExerciseSessionDetailsPage>
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _navigateToCreateWeightRepsPair(context),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         backgroundColor: Colors.deepPurple,
       ),
     );
@@ -98,10 +98,10 @@ class _ExerciseSessionDetailsPageState extends State<ExerciseSessionDetailsPage>
     return _weightRepsPairs.map((weightRepsPair) {
       return Card(
         elevation: 4.0,
-        margin: EdgeInsets.all(8.0),
+        margin: const EdgeInsets.all(8.0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
         child: Container(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.0),
             gradient: LinearGradient(
@@ -121,16 +121,16 @@ class _ExerciseSessionDetailsPageState extends State<ExerciseSessionDetailsPage>
                 children: [
                   Text(
                     'Set ${_weightRepsPairs.indexOf(weightRepsPair) + 1}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 4.0),
+                  const SizedBox(height: 4.0),
                   Text(
                     '${weightRepsPair.weight} kg x ${weightRepsPair.repetitions} reps',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       color: Colors.white,
                     ),
@@ -138,7 +138,7 @@ class _ExerciseSessionDetailsPageState extends State<ExerciseSessionDetailsPage>
                 ],
               ),
               IconButton(
-                icon: Icon(Icons.delete, color: Colors.white),
+                icon: const Icon(Icons.delete, color: Colors.white),
                 onPressed: () => _showDeleteWeightRepsPairDialog(context, weightRepsPair),
               ),
             ],
@@ -163,17 +163,17 @@ class _ExerciseSessionDetailsPageState extends State<ExerciseSessionDetailsPage>
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Delete Set"),
-          content: Text("Are you sure you want to delete this set?"),
+          title: const Text("Delete Set"),
+          content: const Text("Are you sure you want to delete this set?"),
           actions: <Widget>[
             TextButton(
-              child: Text("Cancel"),
+              child: const Text("Cancel"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text("Delete"),
+              child: const Text("Delete"),
               onPressed: () async {
                 await DatabaseHelper.instance.deleteWeightRepsPair(weightRepsPair.id!);
                 await DatabaseHelper.instance.updateLastWeight(widget.exerciseSession.exerciseId);

@@ -22,19 +22,19 @@ class _CreateWeightRepsPairPageState extends State<CreateWeightRepsPairPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Weight x Reps"),
+        title: const Text("Add Weight x Reps"),
         backgroundColor: Colors.deepPurple,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
+            const Text(
               "Weight (kg)",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             TextField(
               controller: _weightController,
               decoration: InputDecoration(
@@ -48,12 +48,12 @@ class _CreateWeightRepsPairPageState extends State<CreateWeightRepsPairPage> {
               ),
               keyboardType: TextInputType.number,
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               "Reps",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             TextField(
               controller: _repsController,
               decoration: InputDecoration(
@@ -67,12 +67,12 @@ class _CreateWeightRepsPairPageState extends State<CreateWeightRepsPairPage> {
               ),
               keyboardType: TextInputType.number,
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               "Sets",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             TextField(
               controller: _setsController,
               decoration: InputDecoration(
@@ -86,13 +86,13 @@ class _CreateWeightRepsPairPageState extends State<CreateWeightRepsPairPage> {
               ),
               keyboardType: TextInputType.number,
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _saveWeightRepsPair(),
-        child: Icon(Icons.save),
+        child: const Icon(Icons.save),
         backgroundColor: Colors.deepPurple,
       ),
     );
@@ -108,7 +108,7 @@ class _CreateWeightRepsPairPageState extends State<CreateWeightRepsPairPage> {
 
     if (weight <= 0 || reps <= 0 || sets <= 0) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Weight, reps, and sets should be greater than 0.")),
+        const SnackBar(content: Text("Weight, reps, and sets should be greater than 0.")),
       );
       return;
     }

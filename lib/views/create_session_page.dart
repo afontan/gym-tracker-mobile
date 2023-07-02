@@ -29,11 +29,11 @@ class _CreateSessionPageState extends State<CreateSessionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Create Session"),
+        title: const Text("Create Session"),
         backgroundColor: Colors.deepPurple,
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
@@ -45,7 +45,7 @@ class _CreateSessionPageState extends State<CreateSessionPage> {
                     decoration: InputDecoration(
                       labelText: 'Date',
                       hintText: 'Select session date',
-                      suffixIcon: Icon(Icons.calendar_today),
+                      suffixIcon: const Icon(Icons.calendar_today),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -67,7 +67,7 @@ class _CreateSessionPageState extends State<CreateSessionPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -76,14 +76,14 @@ class _CreateSessionPageState extends State<CreateSessionPage> {
                       _saveSession();
                     }
                   },
-                  child: Text('Create Session'),
                   style: ElevatedButton.styleFrom(
                     primary: Colors.deepPurple,
-                    padding: EdgeInsets.symmetric(vertical: 12),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
+                  child: const Text('Create Session'),
                 ),
               ),
             ],

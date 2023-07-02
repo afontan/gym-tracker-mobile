@@ -29,7 +29,7 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Exercise Details'),
+        title: const Text('Exercise Details'),
         backgroundColor: Colors.deepPurple,
       ),
       body: SingleChildScrollView(
@@ -38,7 +38,7 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
           children: [
             _buildImage(widget.exercise),
             Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 widget.exercise.name,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.deepPurple.shade600),
@@ -76,7 +76,7 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
               File(exercise.imageUrl),
               fit: BoxFit.cover,
             )
-                : Center(
+                : const Center(
               child: Icon(
                 Icons.image_not_supported,
                 size: 80,
@@ -93,7 +93,7 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
   Widget _buildExerciseSessionsList() {
     return ListView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: exerciseSessions.length,
       itemBuilder: (context, index) {
         final exerciseSession = exerciseSessions[index];
@@ -101,10 +101,10 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
           onTap: () => _navigateToExerciseSessionDetails(context, exerciseSession),
           child: Card(
             elevation: 4.0,
-            margin: EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
             child: Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
                 gradient: LinearGradient(
@@ -119,11 +119,11 @@ class _ExerciseDetailPageState extends State<ExerciseDetailPage> {
               child: ListTile(
                 title: Text(
                   'Session ${exerciseSession.sessionId}',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
                 subtitle: Text(
                   'ExerciseSession ID: ${exerciseSession.id}',
-                  style: TextStyle(fontSize: 16, color: Colors.white),
+                  style: const TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ),

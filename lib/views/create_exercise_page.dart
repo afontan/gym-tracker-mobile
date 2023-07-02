@@ -42,11 +42,11 @@ class _CreateExercisePageState extends State<CreateExercisePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               "Exercise Name",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             TextField(
               controller: _nameController,
               decoration: InputDecoration(
@@ -59,12 +59,12 @@ class _CreateExercisePageState extends State<CreateExercisePage> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               "Exercise Image",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Container(
               height: 200,
               width: double.infinity,
@@ -74,17 +74,17 @@ class _CreateExercisePageState extends State<CreateExercisePage> {
               ),
               child: _imageFile != null
                   ? Image.file(File(_imageFile!.path), fit: BoxFit.cover)
-                  : Icon(Icons.image_not_supported, size: 64),
+                  : const Icon(Icons.image_not_supported, size: 64),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Center(
               child: ElevatedButton.icon(
                 onPressed: () => _pickImageFromCamera(context),
-                icon: Icon(Icons.camera_alt),
-                label: Text("Take Photo"),
+                icon: const Icon(Icons.camera_alt),
+                label: const Text("Take Photo"),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.deepPurple,
-                  textStyle: TextStyle(fontWeight: FontWeight.bold),
+                  textStyle: const TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -93,7 +93,7 @@ class _CreateExercisePageState extends State<CreateExercisePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _saveExercise,
-        child: Icon(Icons.save),
+        child: const Icon(Icons.save),
         backgroundColor: Colors.deepPurple,
       ),
     );
@@ -108,7 +108,7 @@ class _CreateExercisePageState extends State<CreateExercisePage> {
       });
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("No image selected.")),
+        const SnackBar(content: Text("No image selected.")),
       );
     }
   }
@@ -119,7 +119,7 @@ class _CreateExercisePageState extends State<CreateExercisePage> {
 
     if (name.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Exercise name is required.")),
+        const SnackBar(content: Text("Exercise name is required.")),
       );
       return;
     }
