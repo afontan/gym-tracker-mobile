@@ -394,8 +394,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       setState(() {
         _exercises.add(newExercise);
       });
-      _fetchExercisesFromDatabase();
     }
+    _fetchExercisesFromDatabase();
   }
 
   Future<void> _fetchExercisesFromDatabase() async {

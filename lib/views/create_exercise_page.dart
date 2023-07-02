@@ -124,10 +124,12 @@ class _CreateExercisePageState extends State<CreateExercisePage> {
       return;
     }
 
+    Exercise? res;
     if (widget.exercise == null) {
       // Create a new exercise and save it to the database
       Exercise newExercise = Exercise(name: name, imageUrl: imageUrl);
-      var res = await DatabaseHelper.instance.insertExercise(newExercise);
+      final id = await DatabaseHelper.instance.insertExercise(newExercise);
+      res = Exercise(id: id, name: newExercise.name, imageUrl: newExercise.imageUrl);
     } else {
       // Update the existing exercise and save it to the database
       Exercise updatedExercise = Exercise(
@@ -138,6 +140,6 @@ class _CreateExercisePageState extends State<CreateExercisePage> {
       await DatabaseHelper.instance.updateExercise(updatedExercise);
     }
 
-    Navigator.pop(context);
+    if (context.mounted) Navigator.pop(context, res);
   }
 }

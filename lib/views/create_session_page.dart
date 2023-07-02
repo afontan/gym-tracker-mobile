@@ -109,10 +109,13 @@ class _CreateSessionPageState extends State<CreateSessionPage> {
   }
 
   Future<void> _saveSession() async {
+
+    Session? res;
     if (widget.session == null) {
       // Create a new session and save it to the database
       Session newSession = Session(date: DateFormat('yyyy-MM-dd').format(_selectedDate));
-      await DatabaseHelper.instance.insertSession(newSession);
+      final id = await DatabaseHelper.instance.insertSession(newSession);
+      res = Session(id: id, date: newSession.date);
     } else {
       // Update the existing session and save it to the database
       Session updatedSession = Session(
@@ -122,7 +125,7 @@ class _CreateSessionPageState extends State<CreateSessionPage> {
       await DatabaseHelper.instance.updateSession(updatedSession);
     }
 
-    Navigator.pop(context);
+    if (context.mounted) Navigator.pop(context, res);
   }
 
 }
