@@ -10,8 +10,8 @@ import '../model/session.dart';
 import '../model/weight_reps_pair.dart';
 
 class DatabaseHelper {
-  static final _databaseName = "GymTracker.db";
-  static final _databaseVersion = 1;
+  static const _databaseName = "GymTracker.db";
+  static const _databaseVersion = 1;
 
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -60,7 +60,7 @@ class DatabaseHelper {
         sessionId INTEGER NOT NULL,
         exerciseId INTEGER NOT NULL,
         exerciseName TEXT NOT NULL,
-        FOREIGN KEY (sessionId) REFERENCES Session (id),
+        FOREIGN KEY (sessionId) REFERENCES Session (id) ON DELETE CASCADE,
         FOREIGN KEY (exerciseId) REFERENCES Exercise (id)
       )
     ''');
@@ -71,7 +71,7 @@ class DatabaseHelper {
         exerciseSessionId INTEGER NOT NULL,
         repetitions INTEGER NOT NULL,
         weight REAL NOT NULL,
-        FOREIGN KEY (exerciseSessionId) REFERENCES ExerciseSession (id)
+        FOREIGN KEY (exerciseSessionId) REFERENCES ExerciseSession (id) ON DELETE CASCADE
       )
     ''');
   }
@@ -83,6 +83,18 @@ class DatabaseHelper {
     await db.rawQuery('DELETE FROM ExerciseSession');
     await db.rawQuery('DELETE FROM Session');
     await db.rawQuery('DELETE FROM Exercise');
+  }
+
+  // use this in order to change the db schema
+  Future<void> recreateDatabase() async {
+    final db = await database;
+    // Assuming you have tables 'exercises', 'sessions', 'weight_reps_pairs', and 'exercise_sessions'
+    await db.rawQuery('DROP TABLE IF EXISTS WeightRepsPairs');
+    await db.rawQuery('DROP TABLE IF EXISTS ExerciseSession');
+    await db.rawQuery('DROP TABLE IF EXISTS Session');
+    await db.rawQuery('DROP TABLE IF EXISTS Exercise');
+
+    _onCreate(db, 0);
   }
 
   // Exercise methods
