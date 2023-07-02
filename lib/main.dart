@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Gym Training Tracker',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
       home: MyHomePage(title: 'Gym Training Tracker'),
     );
