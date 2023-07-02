@@ -232,7 +232,9 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                 setState(() {
                   _exercises.remove(exercise);
                 });
-                Navigator.of(context).pop();
+                _fetchExercisesFromDatabase();
+
+                if (context.mounted) Navigator.of(context).pop();
               },
             ),
           ],
@@ -342,7 +344,9 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                 setState(() {
                   _sessions.remove(session);
                 });
-                Navigator.of(context).pop();
+                _fetchSessionsFromDatabase();
+
+                if (context.mounted) Navigator.of(context).pop();
               },
             ),
           ],
@@ -474,7 +478,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                 // Reload data after purging
                 _fetchExercisesFromDatabase();
                 _fetchSessionsFromDatabase();
-                Navigator.of(context).pop();
+                if (context.mounted) Navigator.of(context).pop();
               },
             ),
           ],
